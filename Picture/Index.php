@@ -67,6 +67,12 @@
     <link href="{{ static('themes/gulio/css/gulio.css') }}" rel="stylesheet" />
     <link href="{{ static('mediaelement/mediaelementplayer.css') }}" rel="stylesheet" />
 
+	<style>
+	.bottom-six {
+		margin-bottom: 6cm;
+	}
+	</style>
+	
     <script>
     (function(doc, script) {
         var js,fjs=doc.getElementsByTagName(script)[0],frag=doc.createDocumentFragment(),add=function(url,id){if(doc.getElementById(id)){return;}js=doc.createElement(script);js.src=url;id&&(js.id=id);frag.appendChild(js);};
@@ -173,15 +179,17 @@
                     <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
                        
                         <div class="">
-                            {{ post.content }}
+                            <!-- {{ post.content }} -->
+							<a href="{{ post.permalink }}">{{ post.content }}</a>
                         </div>
                         <div class="post-info">
                             <div class="info-left">
-                                <p class="date">Published on <time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> by {{ site.author }}</p>
+                                <!-- <p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> by {{ site.author }}</p> -->
+								<p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> Copyright © Shital Desai. All Rights Reserved.</p> 
                                 {% if post.tags %}
                                 <p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p>
                                 {% endif %}
-                                <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
+                                <!-- <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2> -->
                             </div>
                         </div>
                        <!--  <div class="post-head">
@@ -199,7 +207,11 @@
                             <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
                         </div> -->
                     </article>
-                    {% endfor %}
+					
+					<!-- Adds space between two posts -->
+                    <p class="bottom-six"></p>
+					
+					{% endfor %}
                     {% endif %}
                 </section>
                 {% if not is_tag %}
@@ -218,7 +230,7 @@
                         </div>
                         <div class="post-info">
                             <div class="info-left">
-                                <p class="date">Published on {{ post.created_at|format_date }} by {{ site.author }}</p>
+                                <p class="date">{{ post.created_at|format_date }} by {{ site.author }}</p>
                             </div>
                             <div class="info-right">
                                 <p class="comments">
@@ -230,7 +242,7 @@
                         <div class="post-body">
                             {{ post.content }}
                             {% if post.tags %}
-                            <p class="tags"><strong>Tags</strong>: {{ post.tags|format_tags(humanize=True) }}</p>
+							<p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p>
                             {% endif %}
                         </div>
                         {% endif %}
@@ -260,7 +272,7 @@
                         </div>
                         <div class="post-info">
                             <div class="info-left">
-                                <p class="date">Published on {{ link.created_at|format_date }} by {{ site.author }}</p>
+                                <p class="date">{{ link.created_at|format_date }} by {{ site.author }}</p>
                             </div>
                             <div class="info-right">
                                 <p class="comments">
