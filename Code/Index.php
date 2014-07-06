@@ -205,7 +205,7 @@
               <h2 class="widget-title"><a href="/">{{ site.author }}</a></h2>
               <div class="widget-content">
                 <div class="avatar">
-                  <img src="{{ site.avatar }}" alt="{{ site.author }}" />
+                  <!-- <img src="{{ site.avatar }}" alt="{{ site.author }}" /> -->
                 </div>
                 <p>{{ site.bio }}</p>
                 <ul class="social-links">
