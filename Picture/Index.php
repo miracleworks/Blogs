@@ -187,7 +187,8 @@
                                 <!-- <p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> by {{ site.author }}</p> -->
 								<p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> Copyright © Shital Desai. All Rights Reserved.</p> 
                                 {% if post.tags %}
-                                <p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p>
+                                <!-- <p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p> -->
+								<p class="tags">tags {{ post.tags|format_tags }}</p>
                                 {% endif %}
                                 <!-- <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2> -->
                             </div>
@@ -226,14 +227,15 @@
                 <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
 						<div class="">
                             <!-- {{ post.content }} -->
-							<a href="{{ post.permalink }}">{{ post.content }}</a>
+							<a href="javascript:history.back()">{{ post.content }}</a>
                         </div>
                         <div class="post-info">
                             <div class="info-left">
                                 <!-- <p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> by {{ site.author }}</p> -->
 								<p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> Copyright © Shital Desai. All Rights Reserved.</p> 
                                 {% if post.tags %}
-                                <p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p>
+                                <!-- <p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p> -->
+								<p class="tags">tags {{ post.tags|format_tags }}</p>
                                 {% endif %}
                                 <!-- <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2> -->
                             </div>
