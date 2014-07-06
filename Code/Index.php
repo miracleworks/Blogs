@@ -73,14 +73,14 @@
                   </h2>
                   <div class="post-metadata">
                     <div class="left">
-                      <p class="post-byline">Published by {{ site.author }}</p>
+                      <!-- <p class="post-byline">Published by {{ site.author }}</p> -->
                       <p><time datetime="{{ post.created_at }}" class="post-date">{{ post.created_at|date_format }}</time></p>
                     </div>
                     <div class="right">
                       <p class="post-comment-count">
                         <a href="{{ post.permalink }}{% if site.disqus %}#disqus_thread{% endif %}" class='dsq-comment-count comment-link commentslink'></a>
                       </p>
-                      <p><a href="{{ post.permalink }}" class="post-permalink">Permalink</a></p>
+                      <!-- <p><a href="{{ post.permalink }}" class="post-permalink">Permalink</a></p> -->
                     </div>
                   </div>
                 </header>
@@ -97,7 +97,7 @@
                   {% endif %}
                   {% if post.tags %}
                   <div class="post-tags">
-                    {{- post.tags|format_tags(humanize=True) -}}
+                    {{ post.tags|format_tags }}
                   </div>
                   {% endif %}
                 </div>
@@ -157,7 +157,7 @@
 
                 {% if post.tags %}
                 <div class="post-tags">
-                  {{- post.tags|format_tags(humanize=True) -}}
+                  {{ post.tags|format_tags }}
                 </div>
                 {% endif %}
               </section>
