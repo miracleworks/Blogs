@@ -72,7 +72,7 @@
 		margin-bottom: 6cm;
 	}
 	</style>
-	
+
     <script>
     (function(doc, script) {
         var js,fjs=doc.getElementsByTagName(script)[0],frag=doc.createDocumentFragment(),add=function(url,id){if(doc.getElementById(id)){return;}js=doc.createElement(script);js.src=url;id&&(js.id=id);frag.appendChild(js);};
@@ -207,10 +207,10 @@
                             <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
                         </div> -->
                     </article>
-					
+
 					<!-- Adds space between two posts -->
                     <p class="bottom-six"></p>
-					
+
 					{% endfor %}
                     {% endif %}
                 </section>
@@ -224,7 +224,21 @@
                 {% elif is_post %}
 
                 <article itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
-                    <section class="post-content">
+						<div class="">
+                            <!-- {{ post.content }} -->
+							<a href="{{ post.permalink }}">{{ post.content }}</a>
+                        </div>
+                        <div class="post-info">
+                            <div class="info-left">
+                                <!-- <p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> by {{ site.author }}</p> -->
+								<p class="date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time> Copyright © Shital Desai. All Rights Reserved.</p> 
+                                {% if post.tags %}
+                                <p class="tags">Tags: {{ post.tags|format_tags(humanize=True) }}</p>
+                                {% endif %}
+                                <!-- <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2> -->
+                            </div>
+                        </div>
+                    <!-- <section class="post-content">
                         <div class="post-head">
                             <h2>{{ post.title }}</h2>
                         </div>
@@ -246,7 +260,7 @@
                             {% endif %}
                         </div>
                         {% endif %}
-                    </section>
+                    </section> -->
                     {% if site.disqus %}
                     <hr />
                     <section class="post-comments">
