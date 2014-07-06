@@ -171,7 +171,7 @@
 
                 <section itemscope itemtype="http://schema.org/Blog" class="posts">
                     {% if is_tag %}
-                    <h2 class="tag-head">Showing all posts tagged {{ tag }}:</h2>
+                    <h4 class="tag-head">Showing all posts tagged {{ tag }}:</h4>
                     {% endif %}
 
                     {% if posts %}
@@ -338,7 +338,7 @@
             <div class="span12">
                 <footer class="footer">
                     <div class="copyright">
-                        <p class="pull-left">All rights Reserved &copy; <a href="/">{{ site.name }}</a>.</p>
+                        <p class="pull-left">All rights Reserved &copy; <a href="/">{{ site.author }}</a>.</p>
                         <p class="pull-right">Powered by <a href="http://postach.io" target="_blank">Postach.io</a> | Design based on <a href="http://blog.cerny.me/">Michal Cerný</a></p>
                     </div>
                 </footer>
