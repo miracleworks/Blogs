@@ -48,7 +48,7 @@
             </div>
             <nav class="site-nav">
               <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
+                <!-- <li><a href="/">Home</a></li> -->
                 {% if pages %}
                 {% for page in pages %}
                 <li><a href="{{ page.permalink }}" class="{{ set_active(page.permalink) }}">{{ page.title }}</a></li>
@@ -135,11 +135,11 @@
               <section class="post-body">
                 <header class="post-header">
                   <div class="header-top">
-                    <h1 class="post-title">{{ post.title }}</h1>
+                    <h2 class="post-title">{{ post.title }}</h2>
                   </div>
                   <div class="post-metadata">
-                    <p class="post-byline left">Published by {{ site.author }}</p>
-                    <p class="right"><time datetime="{{ post.created_at }}" class="post-date">{{ post.created_at|date_format }}</time></p>
+                    <!-- <p class="post-byline left">Published by {{ site.author }}</p> -->
+                    <p class="left"><time datetime="{{ post.created_at }}" class="post-date">{{ post.created_at|date_format }}</time></p>
                   </div>
                 </header>
                 {% if post.content|striptags|wordcount > 0 %}
@@ -153,7 +153,7 @@
                 </div>
                 {% endif %}
 
-                {{ theme.social.bar }}
+                <!-- {{ theme.social.bar }} -->
 
                 {% if post.tags %}
                 <div class="post-tags">
