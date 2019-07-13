@@ -13,8 +13,7 @@
 
     {{ header_meta }}
 
-    <link href="http://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
-    <link href="{{ static('themes/binary/css/binary.css') }}" rel="stylesheet" />
+    <link href="{{ assets('css/style.css') }}" rel="stylesheet" />
 
     {% if site.analytics %}
     <script>
@@ -28,6 +27,43 @@
     })();
     </script>
     {% endif %}
+	
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+	<script>
+	  $(document).ready(function () {
+		$('blockquote').each(function () {
+			$(this).replaceWith(function () {
+				var result = '';
+				$(this).find('> div').each(function () {
+					result += $(this).text() + '\n';
+				});
+
+				if (result.trim() === '') {
+					return '';
+				}
+				return '<pre><code>' + result + '</code></pre>';
+			});
+		});
+
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	});
+	</script>
+	<style>
+	pre {
+		background: #f8f8f8;
+		margin: 0;
+	}
+	.hljs {
+		font-size: 12pt;
+		background: none;
+	}
+	</style>
+
+	
   </head>
   <body>
 
@@ -48,7 +84,7 @@
             </div>
             <nav class="site-nav">
               <ul class="nav-menu">
-                <!-- <li><a href="/">Home</a></li> -->
+                <li><a href="/">Home</a></li>
                 {% if pages %}
                 {% for page in pages %}
                 <li><a href="{{ page.permalink }}" class="{{ set_active(page.permalink) }}">{{ page.title }}</a></li>
@@ -73,19 +109,18 @@
                   </h2>
                   <div class="post-metadata">
                     <div class="left">
-                      <!-- <p class="post-byline">Published by {{ site.author }}</p> -->
+                      
                       <p><time datetime="{{ post.created_at }}" class="post-date">{{ post.created_at|date_format }}</time></p>
                     </div>
                     <div class="right">
                       <p class="post-comment-count">
-                        <a href="{{ post.permalink }}{% if site.disqus %}#disqus_thread{% endif %}" class='dsq-comment-count comment-link commentslink'></a>
+                        <a href="{{ post.permalink }}{% if site.disqus %}{% endif %}" class='dsq-comment-count comment-link commentslink'></a>
                       </p>
-                      <!-- <p><a href="{{ post.permalink }}" class="post-permalink">Permalink</a></p> -->
+                      <p><a href="{{ post.permalink }}" class="post-permalink">Permalink</a></p>
                     </div>
                   </div>
                 </header>
                 <div class="post-body">
-                  {% if post.content|striptags|wordcount > 0 %}
                   <div class="post-content">
                     <div data-type-cleanup="true">
                       {{ post.content }}
@@ -94,10 +129,9 @@
                     <span class="post-link-url"><i class="icon-share"></i> <a href="{{ post.url }}" target="_blank">{{ post.url }}</a></span>
                     {% endif %}
                   </div>
-                  {% endif %}
                   {% if post.tags %}
                   <div class="post-tags">
-                    {{ post.tags|format_tags }}
+                    {{- post.tags|format_tags(humanize=False) -}}
                   </div>
                   {% endif %}
                 </div>
@@ -109,7 +143,7 @@
             var disqus_shortname = '{{ site.disqus }}';
             (function() {
               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
               (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
             </script>
@@ -135,14 +169,13 @@
               <section class="post-body">
                 <header class="post-header">
                   <div class="header-top">
-                    <h2 class="post-title">{{ post.title }}</h2>
+                    <h1 class="post-title">{{ post.title }}</h1>
                   </div>
                   <div class="post-metadata">
-                    <!-- <p class="post-byline left">Published by {{ site.author }}</p> -->
-                    <p class="left"><time datetime="{{ post.created_at }}" class="post-date">{{ post.created_at|date_format }}</time></p>
+                    
+                    <p class="right"><time datetime="{{ post.created_at }}" class="post-date">{{ post.created_at|date_format }}</time></p>
                   </div>
                 </header>
-                {% if post.content|striptags|wordcount > 0 %}
                 <div class="post-content">
                   <div data-type-cleanup="true">
                     {{ post.content }}
@@ -151,13 +184,12 @@
                   <span class="post-link-url"><i class="icon-share"></i> <a href="{{ post.url }}" target="_blank">{{ post.url }}</a></span>
                   {% endif %}
                 </div>
-                {% endif %}
 
-                <!-- {{ theme.social.bar }} -->
+                {{ theme.social.bar }}
 
                 {% if post.tags %}
                 <div class="post-tags">
-                  {{ post.tags|format_tags }}
+                  {{- post.tags|format_tags(humanize=True) -}}
                 </div>
                 {% endif %}
               </section>
@@ -170,14 +202,14 @@
                 var disqus_url = '{{site.base_url}}{{ post.permalink }}';
                 (function() {
                   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
                   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                 })();
                 </script>
                 <noscript>
-                  Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+                  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
                 </noscript>
-                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
               </section>
               {% endif %}
             </article>
@@ -205,7 +237,7 @@
               <h2 class="widget-title"><a href="/">{{ site.author }}</a></h2>
               <div class="widget-content">
                 <div class="avatar">
-                  <!-- <img src="{{ site.avatar }}" alt="{{ site.author }}" /> -->
+                  <img src="{{ site.avatar }}" alt="{{ site.author }}" />
                 </div>
                 <p>{{ site.bio }}</p>
                 <ul class="social-links">
@@ -265,7 +297,7 @@
                 {% if site.tags %}
                 <ul>
                   {% for tag in site.tags %}
-                  <li><a href="/tag/{{ tag.name }}">#{{ tag.name }}</a></li>
+                  <li><a href="/tag/{{ tag.name }}">{{ tag.name }}</a></li>
                   {% endfor %}
                 </ul>
                 {% endif %}
@@ -279,6 +311,5 @@
     {% endif %}
 
     {{ footer_meta }}
-
   </body>
 </html>
