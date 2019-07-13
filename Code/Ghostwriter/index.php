@@ -16,6 +16,32 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic" />
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <style>
+    /* overridden style begin ---------------------------------------------------------------------------------------------------- */
+    .site-header {
+      padding: 0px 0 0;
+    }
+    .post-title, .page-title {
+      font-size: 40px;    
+    }
+    .post-header {
+      margin: 0 0 10px;
+      padding: 0 0 10px;
+    }
+    .post-date:after, .blog-description:after {
+      border-bottom: 0px dotted #303030;
+      content: "";
+      display: block;
+      margin: 0px auto 0;
+      width: 0px;
+    }
+    .post-list {
+      border-top: 6px solid #303030;
+      list-style: none;
+      margin: 40px 40px 0;
+      padding: 35px 0 0;
+    }
+    /* overridden style end ---------------------------------------------------------------------------------------------------- */
+    
     .site-bio {
       width: 70%;
       margin: 0 auto;
@@ -51,7 +77,7 @@
 <div class="container">
 <div class="site-title-wrapper">
 <a class="site-logo js-ajax-link" title="{{ site.name }}" href="{{ site.base_url }}">
-<div class="site-avatar"></div>
+<!-- <div class="site-avatar"></div> -->
 </a>
 </div>
 <ul class="site-nav">
@@ -90,20 +116,20 @@
 {% if is_home and homepage %}
 <article class="post-container post">
 <header class="post-header">
-<h1 class="post-title">{{ homepage.title }}</h1>
+<h4 class="post-title">{{ homepage.title }}</h4>
 </header>
 <div class="post-content clearfix">
 {{ homepage.content }}
 </div>
 </article>
 {% elif is_home or is_blog or is_tag %}
-<h1 class="page-title">
+<h4 class="page-title">
 {% if is_tag %}
 Posts tagged "{{ tag|format_tag(False, True) }}"
 {% else %}
 {{ site.name }}
 {% endif %}
-</h1>
+</h4>
 {% if is_home and site.bio %}
 <p class="blog-description site-bio">{{ site.bio }}</p>
 {% endif %}
