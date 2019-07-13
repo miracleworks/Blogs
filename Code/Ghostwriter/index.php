@@ -199,7 +199,7 @@ Posts tagged "{{ tag|format_tag(False, True) }}"
 <a class="js-ajax-link" title="{{ post.title }}" href="{{ post.url }}">
 <h4 class="post-stub-title">{{ post.title|truncate(50) }}</h4>
 <time class="post-stub-date" datetime="{{ post.created_at|format_date }}">
-Published {{ post.created_at|format_date }}
+{{ post.created_at|format_date }}
 </time>
 </a>
 </li>
@@ -235,8 +235,8 @@ Published {{ post.created_at|format_date }}
 <h1 class="post-title">{{ post.title }}</h1>
 {% if is_post or is_link %}
 <p class="post-date">
-Published <time datetime="{{ post.created_at|format_date }}">{{ post.created_at|format_date }}</time>
-<strong>by {{ site.author }}</strong>
+<time datetime="{{ post.created_at|format_date }}">{{ post.created_at|format_date }}</time>
+<!-- <strong>by {{ site.author }}</strong> -->
 </p>
 {% endif %}
 </header>
