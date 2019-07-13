@@ -16,6 +16,63 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic" />
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <style>
+    /* tag cloud begin  ---------------------------------------------------------------------------------------------------- */
+    /* https://postach.io/blog/post/using-tags-and-tag-clouds-in-postach-io */
+    .tag-cloud {
+      width: 100%;
+      max-width: 1280px;
+      /* margin: 5em auto 1em; */
+      text-align: center;
+      padding: 10px 0px 0px 0px;
+    }
+      
+    .tag-cloud h4 {
+      font-weight: bold;
+      padding-bottom: 2em;
+    }
+      
+    .tag-cloud ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+      
+    .tag-cloud li {
+      display: inline-block;
+      margin: 5px;
+    }
+      
+    .tag-cloud a,
+    .tag-cloud a:visited {
+      transition-property: all;
+      -webkit-transition-property: all;
+      transition-duration: 0.2s;
+      -webkit-transition-duration: 0.2s;
+      transition-timing-function: ease-in-out;
+      -webkit-transition-timing-function: ease-in-out;
+      transition-delay: initial;
+      -webkit-transition-delay: initial;
+      display: inline-block;
+      background-color: rgb(175, 183, 181);
+      color: rgb(255, 255, 255);
+      padding-top: 1px;
+      padding-right: 10px;
+      padding-bottom: 1px;
+      padding-left: 10px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      font-size: 0.9rem;
+    }
+      
+    .tag-cloud a:hover,
+    .tag-cloud a:focus {
+      background-color: rgb(55, 204, 162);
+    }
+    /* tag cloud end  ---------------------------------------------------------------------------------------------------- */
+    
+    
     /* overridden style begin ---------------------------------------------------------------------------------------------------- */
     .site-header {
       padding: 0px 0 0;
@@ -37,8 +94,8 @@
     .post-list {
       border-top: 6px solid #303030;
       list-style: none;
-      margin: 40px 40px 0;
-      padding: 35px 0 0;
+      margin: 10px 40px 0;
+      padding: 0px 0 0;
     }
     /* overridden style end ---------------------------------------------------------------------------------------------------- */
     
@@ -148,6 +205,17 @@ Published {{ post.created_at|format_date }}
 </li>
 {% endfor %}
 {% endif %}
+<!-- tag cloud begin  ---------------------------------------------------------------------------------------------------- -->
+{% if site.tags %}
+<div class="tag-cloud">
+	<ul>
+	{% for tag in site.tags %}
+  	<li><a href="/tag/{{ tag.name }}">{{ tag.name }}</a></li>
+	{% endfor %}
+	</ul>
+</div>
+{% endif %}
+<!-- tag cloud end  ---------------------------------------------------------------------------------------------------- -->
 </ol>
 <div class="post-navigation">
 {% if pagination.prev or pagination.next %}
@@ -183,7 +251,7 @@ Published <time datetime="{{ post.created_at|format_date }}">{{ post.created_at|
 {% if post.tags %}
 <p class="post-tags"><span>Tagged:</span> {{ post.tags|format_tags }}</p>
 {% endif %}
-<div class="share">
+<!-- <div class="share">
 <a class="icon-twitter" href="https://twitter.com/share?text={{ post.title }}&url={{ post.permalink }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 <i class="fa fa-twitter"></i>
 <span class="hidden">Twitter</span>
@@ -196,7 +264,7 @@ Published <time datetime="{{ post.created_at|format_date }}">{{ post.created_at|
 <i class="fa fa-google-plus"></i>
 <span class="hidden">Google+</span>
 </a>
-</div>
+</div> -->
 </footer>
 {% if site.disqus %}
 <section class="comments">
